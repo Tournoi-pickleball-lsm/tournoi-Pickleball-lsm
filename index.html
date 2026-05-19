@@ -95,7 +95,6 @@
     .player-info { flex:1; min-width:0; }
     .player-name { font-weight:600; font-size:14px; color:#111111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .player-level { font-size:10px; color:#666666; text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
-    .player-email { font-size:10px; color:#888888; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .level-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
     .dot-0{background:#5aaa5a;} .dot-1{background:#ffaa44;} .dot-2{background:#ff7755;}
     .del-btn { background:none; border:none; color:#aaaaaa; cursor:pointer; font-size:14px; padding:2px 5px; border-radius:4px; transition:color .15s; }
@@ -172,7 +171,7 @@
           <div class="field"><label id="lbl-nom">Nom</label>     <input id="inp-nom"    placeholder="Tremblay" /></div>
         </div>
         <div class="form-row" style="margin-top:14px">
-          <div class="field"><label id="lbl-email">Courriel / Email</label><input id="inp-email" type="email" required placeholder="marie@exemple.ca" /></div>
+          <div class="field"><label id="lbl-email">Courriel</label><input id="inp-email" type="email" required placeholder="marie@exemple.ca" /></div>
           <div class="field">
             <label id="lbl-level">Niveau / Level</label>
             <select id="inp-level">
@@ -226,7 +225,7 @@
       spotsLeft: n => n===0 ? 'Complet !' : `${n} place${n>1?'s':''} restante${n>1?'s':''}`,
 
       cardForm:'Inscription', cardList: n=>`Joueurs Inscrits (${n}/16)`,
-      lblPrenom:'Prénom', lblNom:'Nom', lblEmail:'Courriel / Email', lblLevel:'Niveau',
+      lblPrenom:'Prénom', lblNom:'Nom', lblEmail:'Courriel', lblLevel:'Niveau',
       phPrenom:'Marie', phNom:'Tremblay', phEmail:'marie@exemple.ca',
       btnSubmit:"S'INSCRIRE AU TOURNOI", btnLoading:'INSCRIPTION…',
       fullMsg:'Le tournoi est complet. Aucune inscription n\'est plus possible.',
@@ -247,7 +246,7 @@
       spotsLeft: n => n===0 ? 'Full!' : `${n} spot${n>1?'s':''} remaining`,
 
       cardForm:'Registration', cardList: n=>`Registered Players (${n}/16)`,
-      lblPrenom:'First name', lblNom:'Last name', lblEmail:'Courriel / Email', lblLevel:'Level',
+      lblPrenom:'First name', lblNom:'Last name', lblEmail:'Email', lblLevel:'Level',
       phPrenom:'Marie', phNom:'Tremblay', phEmail:'marie@example.ca',
       btnSubmit:'REGISTER FOR THE TOURNAMENT', btnLoading:'REGISTERING…',
       fullMsg:'The tournament is full. No more registrations are possible.',
@@ -411,7 +410,6 @@
           <div class="player-info">
             <div class="player-name">${esc(p.prenom)} ${esc(p.nom)}</div>
             <div class="player-level">${levelLabels[lang][p.niveau] || levelLabels.fr[p.niveau]}</div>
-            ${p.email ? `<div class="player-email">${esc(p.email)}</div>` : ''}
           </div>
           <div class="level-dot dot-${p.niveau}"></div>
           <button class="del-btn" onclick="removePlayer(${p.id})" title="${t.del}">✕</button>
