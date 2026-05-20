@@ -97,8 +97,6 @@
     .player-level { font-size:10px; color:#666666; text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
     .level-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
     .dot-0{background:#5aaa5a;} .dot-1{background:#ffaa44;} .dot-2{background:#ff7755;}
-    .del-btn { background:none; border:none; color:#aaaaaa; cursor:pointer; font-size:14px; padding:2px 5px; border-radius:4px; transition:color .15s; }
-    .del-btn:hover { color:#ff5555; }
     .empty-state { text-align:center; padding:38px 20px; color:#999999; }
     .empty-icon { font-size:38px; margin-bottom:12px; }
 
@@ -236,7 +234,7 @@
       errDb:'Erreur de connexion. Vérifiez votre configuration Supabase.',
       errConfig:'Configuration Supabase manquante. Voir les instructions dans le fichier HTML.',
       ok: name=>`✓ ${name} est inscrit(e) !`,
-      del:'Retirer', live:'En direct', loading:'Chargement…',
+      live:'En direct', loading:'Chargement…',
     },
     en: {
       heroTitle: 'TOURNAMENT PICKLEBALL <span class="lsm">LSM</span>',
@@ -257,7 +255,7 @@
       errDb:'Connection error. Please check your Supabase configuration.',
       errConfig:'Supabase not configured. See instructions in the HTML file.',
       ok: name=>`✓ ${name} is registered!`,
-      del:'Remove', live:'Live', loading:'Loading…',
+      live:'Live', loading:'Loading…',
     }
   };
 
@@ -334,10 +332,6 @@
     showAlert('success', t.ok(`${prenom} ${nom}`));
   }
 
-  async function removePlayer(id) {
-    if (!configured) return;
-    await db.from('players').delete().eq('id', id);
-  }
 
   // ── TRANSLATIONS ──────────────────────────────────────────────────────────
   function setLang(l) {
@@ -412,7 +406,6 @@
             <div class="player-level">${levelLabels[lang][p.niveau] || levelLabels.fr[p.niveau]}</div>
           </div>
           <div class="level-dot dot-${p.niveau}"></div>
-          <button class="del-btn" onclick="removePlayer(${p.id})" title="${t.del}">✕</button>
         </div>
       `).join('')
     }</div>`;
